@@ -14,9 +14,9 @@ def load():
     try:
         with open('save.txt', 'r') as file: # Открываем файл для чтения
             info = file.readlines() # Читаем все строки файла и загружаем в переменную info
-            sender_email_entry.insert(0, info[0]) # С помощью команды insert вставляем на 0 место из 3-строк 1 строку индекс ноль
-            recipient_email_entry.insert(0, info[1])
-            password_entry.insert(0, info[2])
+            sender_email_entry.insert(0, info[0].strip()) # С помощью команды insert вставляем на 0 место из 3-строк 1 строку индекс ноль
+            recipient_email_entry.insert(0, info[1].strip())
+            password_entry.insert(0, info[2].strip()) # Команда .strip удаляет переносы и в начале и в конце, оставляет только суть
     except FileNotFoundError: # Если файла нет, то ошибки об этом не будет, программа отработает и создаст файл, для этого и нужен pass
         pass
 
