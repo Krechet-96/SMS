@@ -20,9 +20,9 @@ def send_email():
         server = smtplib.SMTP_SSL('smtp.yandex.ru', 465) # Порт для отправки сообщения, как морской
         server.login(sender_email, password)
         server.send_message(msg)
-        print('Письмо отправлено успешно!')
+        result_label.config(text='Письмо отправлено успешно!') # Связали метку для проверки результата
     except Exception as e:
-        print(f'Ошибка: {e}')
+        result_label.config(text=f'Ошибка: {e}')
     finally:
         if server:
             server.quit() # Сервер закрываем, если был открытым
