@@ -10,6 +10,17 @@ def save():
         file.write(password_entry.get() + '\n')
 
 
+def load():
+    try:
+        with open('save.txt', 'r') as file: # Открываем файл для чтения
+            info = file.readlines() # Читаем все строки файла и загружаем в переменную info
+            sender_email_entry.insert(0, info[0]) # С помощью команды insert вставляем на 0 место из 3-строк 1 строку индекс ноль
+            recipient_email_entry.insert(0, info[1])
+            password_entry.insert(0, info[2])
+    except FileNotFoundError: # Если файла нет, то ошибки об этом не будет, программа отработает и создаст файл, для этого и нужен pass
+        pass
+
+
 def send_email():
     save()
     sender_email = sender_email_entry.get() # Отправитель
@@ -63,5 +74,7 @@ Button(text='Отправить письмо', command=send_email).grid(row=5, c
 
 result_label = Label(text='') # Метка для замены принта, сообщение об отправке
 result_label.grid(row=6, column=1, sticky=W)
+
+load()
 
 window.mainloop()
